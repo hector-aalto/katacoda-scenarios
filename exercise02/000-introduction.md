@@ -1,1 +1,1 @@
-In this tutorial, you will learn how to install StorageOS on a three node cluster using Docker.
+In this tutorial, you will learn how to install docker on a Ubuntu machine and run your first containers.
