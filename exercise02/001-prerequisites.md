@@ -1,14 +1,10 @@
 In this tutorial, you will install StorageOS on a three node Docker cluster.
 
-First let's install
+First we need to add Docker’s official GPG key:
 
 `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add` {{execute}}
-`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
-`sudo apt-get update`
 
-`ssh root@host02`{{execute T2}}
-`ssh root@host03`{{execute T3}}
+Use the following command to set up the stable repository and update the package index files from their sources:
+`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`{{execute}}
+`sudo apt-get update`{{execute}}
 
-The StorageOS CLI has already been installed and the environment variables have
-been set:
-`export STORAGEOS_USERNAME=storageos STORAGEOS_PASSWORD=storageos STORAGEOS_HOST=[[HOST_IP]]`{{execute T1}}
