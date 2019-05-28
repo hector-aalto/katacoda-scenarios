@@ -1,42 +1,34 @@
-Linux-IO is an open source implementation of the SCSI target. It and other
-kernel modules are required for StorageOS to function. For more information
-please see our
-[documentation](https://docs.storageos.com/docs/prerequisites/systemconfiguration).
-StorageOS provides a docker container that will ensure the appropriate modules
-are loaded.
+## Running a Docker Container
 
-`docker run --name enable_lio \
-           --privileged \
-           --rm \
-           --cap-add=SYS_ADMIN \
-           --volume /lib/modules:/lib/modules \
-           --volume /sys:/sys:rshared \
-           storageos/init:0.1`{{execute T1}}
+A Container is a runnable instance of an image. The image contains everything required to launch the process without requiring any configuration file or dependencies in the host. 
 
-Now you can install the StorageOS node container on the host.
+You can find existing images at Docker Hub, https://hub.docker.com/ or by typping the command `docker search <image_name>`.
 
-In the first terminal:
+In this example we will run a container that contains **Whalesay** an adaption of the Linux cowsay game.
 
-`docker run -d \
-  --name=storageos \
-  --env=HOSTNAME=host01 \
-  --env=ADVERTISE_IP=[[HOST_IP]] \
-  --env=JOIN=[[HOST_IP]] \
-  --env=DISABLE_TELEMETRY=true \
-  --net=host \
-  --pid=host \
-  --privileged \
-  --cap-add=SYS_ADMIN \
-  --device=/dev/fuse \
-  --volume=/var/lib/storageos:/var/lib/storageos:rshared \
-  --volume=/run/docker/plugins:/run/docker/plugins \
-  --volume=/sys:/sys \
-  storageos/node:1.2.0 server`{{execute T1}}`
+Let's look for Whalesay on the Docker Hub repository:
+`docker search whalesay`{{execute}}
 
-Wait until the container reports that it is healthy:
+You can pull (download) the image locally:
+`docker pull whalesay`{{execute}}
 
-`until docker ps | grep -q "(healthy)"; do echo "Waiting for container health"; sleep 5; done`{{execute T1}}
+Since the image now is locally available you can run it by typping:
+`docker run whalesay cowsay 'Hello world!'`{{execute}}
 
-and confirm that StorageOS has started on the first node:
+Note: if you forget to pull, docker run will also do that for you.
 
-`storageos node ls`{{execute T1}}
+## Start HTTP Server
+`docker run -p 80:80 -d katacoda/docker-http-server`{{execute}}
+
+## Test
+`curl localhost`{{execute}}
+
+## Generated Web Link
+
+https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com
+
+## Markdown 
+<pre>https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com</pre>
+
+## Learn More
+[Displaying Tabs](https://katacoda.com/scenario-examples/scenarios/dashboard-tabs) and [embedding iFrames](https://katacoda.com/scenario-examples/scenarios/dashboard-tabs-iframe)
