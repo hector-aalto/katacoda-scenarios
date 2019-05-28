@@ -1,7 +1,7 @@
 {
   "pathwayTitle": "exercise02",
   "icon": "fa-docker",
-  "title": "Running yout first Docker container",
+  "title": "Running your first Docker container",
   "time": "10 minutes",
   "description": "Learn how to install Docker and run your first container",
   "details": {
@@ -15,12 +15,13 @@
         "text": "001-prerequisites.md"
       },
       {
-        "title": "Installation",
-        "text": "002-installation.md"
+        "title": "Running a Docker Container",
+        "text": "002-running-docker.md"
       },
       {
-        "title": "Pulling images",
-        "text": "003-provision-volume.md"
+        "title": "Task 1",
+        "text": "003-todo1.md",
+        "verify": "003-verify.sh"
       }
     ],
     "finish": {
