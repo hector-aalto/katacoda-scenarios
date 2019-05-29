@@ -1,30 +1,23 @@
-## MongoDB as a Docker Container
+Connect to the database and change its name to 
 
-Let's start by pulling the docker image:
+`mongo localhost/mydb`{{execute}}
 
-`docker pull mongo`
+Now we will create a collection call `cities` and populate it with some documents:
 
-To run the process in the background we will add the parameter `-d`
+`db.createCollection('cities') db.cities.insert({ name: 'New York', country: 'USA' }) db.cities.insert({ name: 'Paris', country:'France'}`{{execute}}
 
-For administration purposes we will give the container the name mongodb: `--name mongodb`
+You should be able to find them by typping:
 
-We have to map the tcp port from the container to the port in the docker host, for that we use the option:
-`-p HOST:CONTAINER`
+ `db.cities.find()`{{execute}}
 
-Finally, to keep persitance of the data we mount the directory `~/data` from the host to the directory `/data/db` in the container using the option `-v`
+## Migrating data to a new container
 
-The complete commands should looks like:
+We want to migrate the data from our `mongodb` to a different one in the port `37017`.
 
-`docker run -d --name mongodb -p 27017:27017 -v ~/data:/data/db mongo`
+First, we have to copy the data from the previous container (it is locate in: `~/data`)
 
-You can expect the content of the container by typping:
+`sudo cp -r ~/data ~/data_clone`{{execute}}
 
-`docker exec -it <CONTAINER_ID> bash`
+Now we just need to start another container (using the same image), mapping the port 27017 from the container to the port 37017 in the host and mount the data copied previously to `/data/db`.
 
-To quit from the container just do: `quit`
-
-Now we are going to connect to the database, first we need to install the client:
-
-`apt-get install -y mongodb-clients`{{execute}}
-
-In the next step we will connect to the database and populate it with data.
+`docker run -d -p 37017:27017 -v ~/data_clone:/data/db mongo`{{execute}}
