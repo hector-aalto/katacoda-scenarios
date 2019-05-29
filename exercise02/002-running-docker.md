@@ -14,7 +14,7 @@ The image should now be listed:
 `docker images`{{execute}}
 
 You can run it by typping:
-`docker run whalesay 'Hello world!'`{{execute}}
+`docker run docker/whalesay cowsay 'Hello world!'`{{execute}}
 
 Note: if you forget to pull, docker run will also do that for you.
 
@@ -23,4 +23,3 @@ To check if the container is running use:
 
 Nothing is listed because its execution has finished, let's take a look for containers that have been closed:
 `docker ps -a`{{execute}}
-

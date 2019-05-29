@@ -19,9 +19,13 @@
         "text": "002-running-docker.md"
       },
       {
-        "title": "Task 1",
-        "text": "003-todo1.md",
-        "verify": "003-verify.sh"
+        "title": "MongoDB Container",
+        "text": "003-todo1.md"
+      },
+      {
+        "title": "Populating the database",
+        "text": "004-mongodb.md",
+        "verify": "004-verify.sh"
       }
     ],
     "finish": {
