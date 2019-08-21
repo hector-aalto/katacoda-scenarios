@@ -1,0 +1,6 @@
+# ignore all logs
+*.log
+# ignore notes
+/notes
+# ignore hello-world
+/hello-world
